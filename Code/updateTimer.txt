@@ -1,0 +1,10 @@
+void updateTimer() {
+  ulong currentMillis = millis();
+
+  if(currentMillis >= maxMillis || currentMillis >= nextMillis){
+    Phase *currentPhase = performSignalTransition();
+    
+    nextMillis = currentMillis + currentPhase->state->interval;
+    maxMillis = currentMillis + currentPhase->maxGreenInterval;
+  }
+}

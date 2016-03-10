@@ -1,0 +1,26 @@
+protected void calculateGreenTime() {
+    List<movement> largeMovements = new List<movement>();
+    double totalCars = 0;
+    double _notGreenTime = 0, _useOfLanes = _phases.Count() * 0.5;
+
+    foreach (var _phase in _phases) {
+        movement currentMovement = _phase.findLargeLanes();
+        largeMovements.Add(currentMovement);
+
+        double numOfAvgCarsPrHourPrMovement = currentMovement.getAvgCarsPrHourPrMovement();
+        totalCars += numOfAvgCarsPrHourPrMovement;
+
+        _notGreenTime += _phase.redClearance + _phase.minimumYellow;
+        _useOfLanes -= numOfAvgCarsPrHourPrMovement / ((double)currentMovement.capasity());
+    }
+
+    double _cycleLength = (1.5 * _notGreenTime) / _useOfLanes;
+
+    for (int i = 0; i < largeMovements.Count; i++) {
+        double newGreen = checkRange(_cycleLength * largeMovements[i].getAvgCarsPrHourPrMovement() / ((double)totalCars), _phases[i].minimumGreenInterval, _phases[i].maximumGreenInterval);
+        _phases[i].greenTime = newGreen;                
+        if (Math.Abs(_phases[i].greenTime - newGreen) >= 5) {
+            _phases[i].needsPush = true;
+        }
+    }
+}

@@ -1,0 +1,5 @@
+struct Signal {
+    uint interval;
+    byte colors;
+    struct Signal *next;
+}

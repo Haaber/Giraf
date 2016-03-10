@@ -1,0 +1,7 @@
+struct Phase {
+    Signal *signal;
+    uint minGreenInterval;
+    uint maxGreenInterval;
+    uint passageTime;
+    byte trafficLights;
+}

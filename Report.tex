@@ -1,0 +1,16 @@
+\documentclass[a4paper,12pt,twoside]{report}
+
+\input{Preamble/Preamble.tex}
+
+\begin{document}
+\lstset{language=C}
+\ifdefined\draft
+    \input{GuideForSupervisor.tex}
+\fi
+%remove before handing ind the report. and remember to delete all todo and outcomment a line in setup for fixme 
+\listoftodos
+\listoffixmes
+\newpage
+\input{Chapters/Index.tex}
+
+\end{document}

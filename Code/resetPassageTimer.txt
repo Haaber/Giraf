@@ -1,0 +1,8 @@
+void resetPassageTimer(ulong passageTime) {
+  ulong next = passageTime + millis();
+
+  // extend interval (but never decrease it)
+  if(nextMillis < next) {
+    nextMillis = next;
+  }
+}

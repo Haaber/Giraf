@@ -1,0 +1,17 @@
+\lstdefinelanguage{Java} {
+    keywords={true, false, return, null, try, catch, switch, if, while, do, else, for, instanceof, private, public},
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={import, static, @Test, @Override, int, double, class},
+    ndkeywordstyle=\color{violet}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{gray}\ttfamily,
+    stringstyle=\color{dkgreen}\ttfamily,
+    morestring=[b]"
+}
+
+\newcommand{\Java}[3]{
+    \kodeprintstyle{#1}{#2}{#3}{Java}
+}

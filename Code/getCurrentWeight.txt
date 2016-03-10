@@ -1,0 +1,22 @@
+public double getCurrentWeight(double combinedRotationTime)
+{
+    if (movement.Count() == 0)
+        return 0;
+
+    int carPrHour = movement.OrderByDescending(mov => mov.capacity()).Last().capacity();
+
+    double carsInQueue = movement.OrderByDescending(mov => mov.vehicleQueue).First().vehicleQueue;
+
+    double amountOfCarsComparedToStastistic = getCarsLastHour() / getAvgCarsPrLastHour(1);
+
+    double estimatedNextHour = (getAvgCarsPrLastHour() * amountOfCarsComparedToStastistic) + carsInQueue;
+
+    double estimatedNumOfCarsNextHour = ((greenTime / combinedRotationTime) * carPrHour);
+
+    double priority = estimatedNextHour / estimatedNumOfCarsNextHour;
+
+    if (_skip > 0)
+        priority += (_skip * (DateTime.Now - lastScheduled).TotalSeconds) / 100;
+
+    return priority;
+}

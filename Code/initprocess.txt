@@ -1,0 +1,23 @@
+void findActiveSensors() {
+  for (int i = 0; i < NUM_OF_SENSORS; i++) {
+    int maxValue = INT_MIN;
+    int minValue = INT_MAX;
+
+    // measure the min and max readings of the sensors pins
+    for (int j = 0; j < NUM_OF_MEASUREMENTS; j++) {
+      int analogValue = analogRead(i);
+
+      minValue = min(minValue, analogValue);
+      maxValue = max(maxValue, analogValue);
+
+      delay(READ_DELAY);
+    }
+
+    // add sensors which seems to be active (connected)
+    if ((maxValue - minValue) <= ALLOWED_NOISE) {
+      sensors[numOfActiveSensors].startValue = maxValue;
+      sensors[numOfActiveSensors].pinPort = i;
+      numOfActiveSensors++;
+    }
+  }
+}

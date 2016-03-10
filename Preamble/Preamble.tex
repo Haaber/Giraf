@@ -1,0 +1,185 @@
+% Encoding set and preamble settings
+\usepackage[utf8]{inputenc}
+\input{Preamble/Settings.tex}
+
+% Packages
+\usepackage{array}% http://ctan.org/pkg/array
+\usepackage{parskip} % Creates extra spacing between paragraphs
+\usepackage{tabularx} % For creating tables
+\usepackage{multirow} % Tables with multiple rows
+\usepackage{threeparttable} % For footnotes in tables
+\usepackage{fourier} % Default font
+\usepackage[english]{babel} % Report language
+\usepackage{geometry} % Report margins
+%\usepackage[hcentering, bindingoffset=4mm]{geometry} % Report margins
+\usepackage{fancyhdr} % Pretty headers and footers
+\usepackage{lastpage} % For finding lastpage
+\usepackage{hyperref} % clickable references for labels in PDF
+\usepackage{float} % For constructing figures properly
+\usepackage{wrapfig} % allows figures to wrap text -http://ctan.org/pkg/wrapfig
+\usepackage{url} % For making URL
+\usepackage{amssymb,amsmath} % For making large math expressions
+\usepackage{titlesec} % For changing section sizes
+\usepackage{xr} % Makes it possible to cross reference in multiple files
+\usepackage{amsmath} % For making matematical expressions
+\usepackage{mathtools} % For making matematical expressions
+\usepackage[toc,page]{appendix} % Appendix
+\usepackage{enumitem} % Enumerated lists
+\usepackage[boxruled,linesnumbered,noend]{algorithm2e} % Algorithms
+\usepackage{graphicx} % Images
+\usepackage{pdfpages} % PDF pages
+\usepackage{color} % For using colors
+\usepackage{soulutf8} % For highlighting
+\usepackage{multicol} % For itemizing with multiple columns
+\usepackage{cleveref} % Enhances LATEX's cross-referencing features
+\usepackage[nounderscore]{syntax} % Syntax for Context Free Grammar
+\usepackage{listings} % For writing code.
+\usepackage{csquotes} % Used for making quotes
+\usepackage[backend=biber, style=ieee]{biblatex} % Litterature list
+\usepackage{todonotes} %adds todo list
+\usepackage{blindtext} % adds some test without meanning for a todo
+
+
+\usepackage{xspace}
+
+\setlength\extrarowheight{4pt} % Extra spacing in tables between row elements
+
+% Draft settings
+\ifdefined\draft\usepackage{Preamble/Packages/currfile}\fi % Show file names
+\ifdefined\draft\usepackage[inline]{showlabels}\fi % Show label names
+
+% Insert litterature
+\addbibresource{Chapters/Kilder.bib}
+
+% Headlines for algorithms
+% http://tex.stackexchange.com/questions/41012/change-the-algorithm-enumeration-in-the-algorithm2e-package
+\renewcommand{\listalgorithmcfname}{Algorithms}%
+\renewcommand{\algorithmcfname}{Algorithm}%
+\renewcommand{\algorithmautorefname}{algorithm}%
+\renewcommand{\algorithmcflinename}{line}%
+\renewcommand{\procedureautorefname}{procedure}%
+
+% Reference for listings
+\crefname{lstlisting}{listing}{listings}
+
+% https://tex.stackexchange.com/questions/129400/multiple-letters-without-spacing-in-math
+\newcommand{\mli}[1]{\mathit{#1}}
+
+% Dokument informationskommandoer
+\newcommand{\currentpage}{\thepage}     % nuværende side
+\newcommand{\numpages}{\pageref{LastPage}}% antal sider
+\newcommand{\sidetal}{Page {\currentpage} of {\numpages}} % side informationer
+\newcommand{\pagetitle}{\rightmark}     % nuværende sektion
+
+% Report meta information
+\title{\rapportnavn}
+\author{\gruppen}
+\date{\afldate}
+
+% Setup af header og footer
+\fancypagestyle{plain}{
+    % Nulstil header og footer
+    \fancyhead{}
+    \fancyfoot{}
+
+    % Setup header
+    % Left / Right - Even / Odd
+    \fancyhead[LE]{\rapportnavn}        % Lige sider
+    \fancyhead[RO]{\pagetitle}          % Ulige sider
+
+    % Sæt footer op
+    \fancyfoot[LE]{\sidetal}            % Lige sider
+    \fancyfoot[RO]{\sidetal}            % Ulige sider
+    
+    % Sæt kun filnavn på en draft
+    \ifdefined\draft
+        \fancyfoot[LO]{\currfilepath}   % Ulige sider
+        \fancyfoot[RE]{\currfilepath}   % Lige sider
+    \fi
+}
+
+\setlength{\headheight}{15pt}
+
+% Sætter pagestyle til plain - header og footer
+\pagestyle{plain}
+
+% Fjerner ligegyldig whitespace - men rykker ting op så vi ikke har teksten på slut
+\raggedbottom
+
+% Fjerner punktummet efter sektion-nummer i header (2.2. XXX --> 2.2 XXX)
+\renewcommand\sectionmark[1]{%
+  \markright{\MakeUppercase{\textbf{\thesection}\ #1}}}
+
+% Fjerner afstand mellem kapitel og sætter størrelsen på skriften - se evt. her: http://tex.stackexchange.com/questios/63390/how-to-decrease-spacing-before-chapter-title
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename \hspace{0.1cm} \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
+% Indent til eller fra
+\newcommand{\enableIndent}{\setlength\parindent{12pt}}
+\newcommand{\disableIndent}{\setlength\parindent{0pt}}
+\disableIndent 
+
+% Opretter subsubsubsection og subsubsubsubsection
+\newcommand{\subsubsubsection}[1]{\noindent\paragraph{#1}\mbox{}\\}
+\newcommand{\subsubsubsubsection}[1]{\noindent\subparagraph{#1}\mbox{}\\}
+
+% Skriftstørrelse på sections
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+\titleformat*{\paragraph}{\normalsize\bfseries}
+\titleformat*{\subparagraph}{\normalsize\bfseries}
+
+% Definerer antallet af overskrifter der har tal, samt antallet af overskrifter i indholdsfortegnelsen
+\setcounter{secnumdepth}{2}             % Antallet af overskrifter der har et nr - dybden
+\setcounter{tocdepth}{1}                % Antallet af overskrifter i indholdsfortegnelse - dybden - eks. 3.2
+
+% Orddeling
+\hyphenation{}
+
+% Ændrer indstillingerne for caption for figurer, tabeller og kodestykker - tilføjer bla. kusiv og gør typenavnet bold (eks. Figur 1.1: bliver fed)
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+
+% FixMe
+\ifdefined\CMDFixMe
+    \input{Preamble/FixMe/Index.tex}
+\fi
+
+% Source code
+\ifdefined\CMDCode
+    \input{Preamble/CodeStyles/Index.tex}
+\fi
+
+% Oprettelse af links inde i pdf dokumentet
+\hypersetup{
+    pdftitle={\rapportnavn},
+    pdfauthor={\gruppen},
+    pdfsubject={\rapportnavn},
+    bookmarksnumbered=true,
+    bookmarksopen=false,
+    bookmarksopenlevel=1,
+    colorlinks=false,
+    pdfstartview=Fit,
+    pdfpagemode=UseOutlines,
+    pdfpagelayout=TwoPageRight,
+    pdfborder = {0 0 0}
+}
+
+% Badness underfull og overfull
+\hbadness=10001                         % Slår alle underfull badness warnings fra
+\hfuzz=1000pt                           % Slår de ligegyldige overfull warnings fra
+
+% Figurer
+\newcommand{\figur}[5][0]{
+		\begin{figure}[H] \centering \em %H / h!
+			\includegraphics[width=#5\textwidth, angle=#1]{#2}
+			\caption{#3}\label{fig:#4}
+		\end{figure}
+}
+
+% Inkluder ikke i ToC, men behold section number
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
+% Environments
+\input{Preamble/Environments.tex}

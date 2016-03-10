@@ -1,0 +1,28 @@
+public void Notify(Message commandArray) {
+	Logger.log("Intersection recived data, parseing started.", LogLevels.DEBUG);
+
+	if (_trafficLightId == 0) {
+		if (commandArray.command == "getArduinoId") {
+			_trafficLightId = getTrafficLightId(commandArray);
+			LoadData();
+			sendInitInformation(true);
+
+
+			Logger.log("Intersection information has been loaded, and intersecton is now ready!", LogLevels.DEBUG);
+		} else {
+			_arduinoHandler.requestDataWithTimeout("restart;", 30000);
+		}
+	} else {
+		switch (commandArray.command) {
+		case "stateChange":
+			Logger.log("An phase change has been reported from the intersection.", LogLevels.INFO);
+			updateStates(commandArray.intResponse);
+
+			break;
+		case "Valid":
+			Logger.log("A valid schedule has been accepted.", LogLevels.INFO);
+
+			break;
+		}
+	}
+}

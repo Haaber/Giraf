@@ -1,0 +1,33 @@
+protected void calculateNextHour()
+{
+    Logger.log("Started calculating!", LogLevels.DEBUG);
+    calculateGreenTime();
+    double combinedPhaseTime = (_phases.Select(ph => ph.greenTime).Sum()) + (_phases.Select(ph => ph.minimumYellow).Sum() * 2) + (_phases.Select(ph => ph.redClearance).Sum());
+
+    Dictionary<double, phase> weights = _phases.OrderByDescending(ph => ph.getCurrentWeight(combinedPhaseTime)).ToDictionary(ph => ph.getCurrentWeight(combinedPhaseTime), ph => ph);
+
+    double avgWeight = weights.Select(w => w.Key).Sum() / weights.Count();
+
+    foreach (var ph in weights)
+    {
+        Logger.log("Weight: " + ph.Key + ", AVG. Dump: " + (ph.Key - avgWeight) + ", Phase: " + ph.Value.phaseId, LogLevels.DEBUG);
+        if (ph.Key - avgWeight < avgWeight - weights.First().Key)
+        {
+            Logger.log("Phase " + ph.Value.phaseId + " is going to be skipped.", LogLevels.INFO);
+            if (!ph.Value.skipNextStatus)
+                ph.Value.skipUpdate();
+            ph.Value.needsPush = true;
+        }
+        else
+        {
+            if (ph.Value.skipNextStatus)
+                ph.Value.skipUpdate();
+        }
+    }
+
+    if (_phases.Where(ph => ph.needsPush).Count() > 0)
+    {
+        _phases.Where(ph => ph.needsPush).Select(ph => ph.needsPush = false);
+        sendInitInformation();
+    }
+}

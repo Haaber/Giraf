@@ -1,0 +1,64 @@
+\section{Software Development Method}
+One of the bigger challenges in this semester is to coordinate the development process between all groups, this section defines the development method used. 
+
+
+\subsection{Scrum}\label{ssec:Scrum}
+
+The project is structured using Scrum \kfix{Indæt reference til scrum website}, with an implementation of scrum of scrums for top level organization. This way of structuring the development process ensures that knowledge is shared among the multiple groups. The most important parts of the development methods we decided to use are described below. \hfix{find more source on scrum}
+
+%For this project the groups unanimously decided to implement a Scrum of Scrum structure, at the top level of the organizational. to ensure knowledge sharing among groups. Some parts from scrum that are used in this project will be listed below and described.  \hfix{find more source on scrum}
+
+\subsection{Mulit-Project Organization Method}
+The scrum team has three key roles that should be filled to ensure a smoother development process; the Scrum master, the Product Owner(PO) and the development team. The time assigned for development is split into four sprints.
+
+%The structure of this project is that there is a product owner and then all groups are under the product owner (PO). \hfix{mabey a pic og this} During the duration of the project it has been decided that there is four sprints. As a result of this and organizational tool that supports sprints and only one PO is implemented into the top level of the organisation, this tool is Scrum. The Scrum implementation will be explained in \ref{ssec:Scrum} 
+
+%\textbf{Multi-Project level}
+%Multi project is the top level of Scrum, this level is used to get an insight of what other groups were working on. The insight was gained through a weekly meeting where the status of each groups was discussed, each group had at least one representative at this meeting. 
+
+\textbf{Group level}
+Groups were free to use any development process that they saw fit in there group. However all groups were excepted to take part in the weekly scrum meetings and to complete any tasks assigned to them from the Product Backlog
+
+\textbf{User Story}
+User stories are used to give an idea of what is wanted from either new features or changes to existing features, from the perspective of either a guardian, citizen or a developer. A user story includes a goal and a description. If a user story is structured differently, it then has to be approved by a product owner.\kfix{Hvad betyder den sidste sætning?} \hfix{get an example of a user story.}
+
+\textbf{Task}
+Tasks are used to break down a user story, allowing multiple people to work on the same user story at the same time. Generally the workload of a task spans from, a half day to two days work. \kfix{mere præcis tids bestemmelse}
+
+\textbf{Product Backlog}
+The product backlog contains features, bugs, and technical work for the whole project, which are either requested by the customers or by developers. E.g. if someone needs some specific method to access data from the database, they will request it as a user story. The user story is then written down by the product owner, and added to the product backlog. The product backlog was prioritized during sprint planning, prioritizing was done by the attendees at the sprint planning meeting.
+
+\textbf{Sprint Backlog}
+Sprint backlogs are per group and sprint. On the sprint backlog there are the tasks assigned to the group, the estimated time the tasks will take, and the user story for the individual tasks.
+
+\textbf{Product Owner}
+The agile development methodology Scrum uses the term Product Owner (PO) to refer to the primary stakeholder for a project. PO existed only on the top level in the organisation. The PO is the only one that has direct contact to the costumer. The PO is responsible for prioritizing the backlog, ensuring the development teams only work on backlog-items which create the most business value. In Scrum, there is exactly one PO per team \cite{Scrum_PO} 
+
+\textbf{Scrum Master}
+The Scrum Master is responsible for enforcing the usage of the development method as well as arranging and hosting the weekly sprint meetings. A Scrum Master was chosen for the entire multi-project. On the group level, the usage of a Scrum Master was optional.
+
+\textbf{Weekly Scrum Meeting}
+At the weekly scrum at least one representative for each group has to show up to the meeting and follow the structure of scrum. At the meeting the groups discuss what a group has done since the last meeting, if they have any troubles they cannot solve, and what their work plan is until next meeting. 
+
+\textbf{Sprint Planning Meetings}
+Sprint Planning Meeting are where at least one representative for each group meets to distribute the tasks from the backlog, and the scrum master tells what the focus of this sprint is. 
+
+\textbf{Sprint End Meetings}
+At the Sprint End Meetings the PO has a meeting with the costumer to show the progress of the system. During this meeting new user stories are developed together with the costumer, so further development can be performed to the system.
+
+\hfix{Need a transitions form Scrum to tools}
+
+\section{Tools}
+In this section all the different tools used for the project will be explained. All are tools used by all groups part of the multi-project.
+
+\textbf{Phabricator}
+Phabricator is a web-based software development collaboration tool, which includes a code review tool called Differential, a repository browser called Diffusion, a backlog and a bug tracker called Maniphest, and a wiki page called Phriction. Phabricator is also used as an intermediate with git, where all code is needed to be uploaded to Differential, before it can be uploaded to the git repository. \hfix{Need a good source}
+
+\textbf{Android Studio}
+Android Studio is an official tool for android development, made by Google. In Android Studio there are features like debugging, syntax highlighting, and Gradel based development. Gradle is an open source build automation system used for building and deployment of the system.\cite{Android_Studio}
+
+\textbf{Git}
+Git is a distributed version control system \cite{Git}. Git is used in GIRAF to see what changes has been to the source code. A Git repository exists for each application in the GIRAF project. 
+
+\textbf{Jenkins}
+Jenkins is a continuous integration tool. It is configured to build the system every time changes are added to its master branch. \cite{Jenkins} If the build fails, a mail will be sent to developers. If the build is successful, an Android Application Package (APK) file is created by Jenkins. This file is used to distribute software, which makes it possible for users to install the software on an Android device. 

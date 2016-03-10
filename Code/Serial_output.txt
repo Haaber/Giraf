@@ -1,0 +1,11 @@
+void serialOutput(String sender, String response, int specficLane = -1) {
+  Serial.print(COMMAND_END_CHAR);
+  Serial.print(sender);
+  Serial.print(COMMAND_SPLIT_CHAR);
+  if (specficLane != -1) {
+    Serial.print(specficLane);
+    Serial.print(COMMAND_SPLIT_CHAR);
+  }
+  Serial.print(response);
+  Serial.println(COMMAND_END_CHAR);
+}
